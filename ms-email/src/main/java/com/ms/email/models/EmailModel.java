@@ -2,6 +2,7 @@ package com.ms.email.models;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +25,7 @@ public class EmailModel implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	private Long emailId;
+	private UUID emailId;//tipo adequando para nao haver conflito em microservicos
 	
 	private String ownerRef; //ref do proprietario que esta mandando
 	private String emailFrom; //de quem é o email
@@ -39,7 +40,7 @@ public class EmailModel implements Serializable {
 	
 	
 	
-	public EmailModel(Long emailId, String ownerRef, String emailFrom, String emailTo, String subject, String text,
+	public EmailModel(UUID emailId, String ownerRef, String emailFrom, String emailTo, String subject, String text,
 			LocalDateTime sendDateEmail, StatusEmail statusEmail) {
 		super();
 		this.emailId = emailId;
@@ -58,10 +59,10 @@ public class EmailModel implements Serializable {
 	}
 
 
-	public Long getEmailId() {
+	public UUID getEmailId() {
 		return emailId;
 	}
-	public void setEmailId(Long emailId) {
+	public void setEmailId(UUID emailId) {
 		this.emailId = emailId;
 	}
 	public String getOwnerRef() {
